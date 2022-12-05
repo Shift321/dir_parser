@@ -7,9 +7,6 @@ from models.directories import Directories
 from models.files import Files
 from utils.files import check_for_delete_files
 from utils.files import file_hashes, old_hashes
-from utils.dirsectories import old_dirs
-from utils.dirsectories import check_for_delete_dirs
-
 from utils.dirsectories import dirs
 
 
@@ -42,7 +39,7 @@ def scan_directory(path, session, path_to_loging, loger, parent_dir_id: Optional
                     for byte in iter(lambda: f.read(4096), b""):
                         sha256_hash.update(byte)
             except FileNotFoundError:
-                loger.write_logs(msg="No such file or directory",level="Error")
+                loger.write_logs(msg="No such file or directory", level="Error")
 
             stat_info = os.stat(i.path)
             mask = oct(stat_info.st_mode)[-3:]

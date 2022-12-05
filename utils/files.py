@@ -1,8 +1,8 @@
-
 from models.files import Files
 
 file_hashes = []
 old_hashes = []
+
 
 def check_for_delete_files(hash, session) -> None:
     """
