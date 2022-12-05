@@ -18,9 +18,3 @@ class Files(Base):
 
     dir = relationship("Directories", back_populates="file")
 
-    def __init__(self, dir_id, name, datetime_last_change, access_to_file, file_hash):
-        self.dir_id = dir_id
-        self.name = name
-        self.datetime_last_change = datetime_last_change
-        self.access_to_file = access_to_file
-        self.file_hash = file_hash

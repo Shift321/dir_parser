@@ -14,7 +14,3 @@ class Directories(Base):
     name: str = Column(String)
 
     file = relationship("Files", back_populates="dir")
-
-    def __init__(self, parent_dir_id, name):
-        self.parent_dir_id = parent_dir_id
-        self.name = name
