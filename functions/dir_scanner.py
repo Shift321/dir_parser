@@ -57,6 +57,6 @@ def scan_directory(path, session, path_to_loging, loger, parent_dir_id: Optional
                     session.add(start_file[0])
                     session.flush()
                     session.refresh(start_file[0])
-            check_for_delete_files(hash=sha256_hash.hexdigest(), session=session)
+            check_for_delete_files(hash=sha256_hash.hexdigest())
     session.commit()
-    return {"file_hashes": file_hashes, "old_hashes": old_hashes, "dirs": dirs}
+    return {"file_hashes": file_hashes, "dirs": dirs}
