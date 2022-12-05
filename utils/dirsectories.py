@@ -5,6 +5,9 @@ old_dirs = {}
 
 
 def check_for_delete_dirs(session):
+    """
+    Проверка директории для удаления
+    """
     directories = session.query(Directories).all()
     for i in directories:
         if i.name not in old_dirs.keys():
@@ -14,6 +17,9 @@ def check_for_delete_dirs(session):
 
 
 def delete_dirs(session, directs, old_directs):
+    """
+    Удаление директории
+    """
     for i in old_directs:
         if i not in directs:
             directory = session.query(Directories).filter(Directories.name == i).one()

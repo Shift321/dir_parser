@@ -4,6 +4,9 @@ from typing import Optional
 
 
 class CustomLogging:
+    """
+    кастомный логер
+    """
     def __init__(self, log_path, verbose):
         self.log_path = log_path
         self.verbose = verbose
@@ -16,6 +19,9 @@ class CustomLogging:
 
     @staticmethod
     def write_logs(msg, level: Optional[str] = None):
+        """
+        Написание логов
+        """
         if level == "Error":
             logging.error(msg)
         else:
@@ -23,4 +29,7 @@ class CustomLogging:
 
     @staticmethod
     def finish_logs():
+        """
+        Окончание логов
+        """
         logging.info("Script finished")

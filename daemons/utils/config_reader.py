@@ -2,6 +2,9 @@ import yaml
 
 
 def read_config(path):
+    """
+    Чтение конфига
+    """
     with open(path, "r") as stream:
         conf = yaml.safe_load(stream)
         directory_path = conf['conf'][0]['directory']

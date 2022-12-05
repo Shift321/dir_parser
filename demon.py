@@ -9,6 +9,9 @@ args = parser.parse_args()
 data = read_config(args.config)
 
 while True:
+    """
+    Что то на подобии демона отслеживание директории в реальном времени
+    """
     main(data)
     time.sleep(15)
 
