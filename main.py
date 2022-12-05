@@ -1,4 +1,6 @@
 from database.database import Base, create_session, make_engine
+from utils.dirsectories import delete_dirs, check_for_delete_dirs
+from utils.files import delete_files
 from functions.dir_scanner import scan_directory
 from utils.logger import CustomLogging
 from utils.arg_parser import create_parser
@@ -26,8 +28,13 @@ def main(data):
     engine = make_engine(data['database_path'])
     Base.metadata.create_all(engine)
     session = create_session(engine)
-    scan_directory(path=data['directory_path'], session=session, path_to_loging=data['log'], loger=custom_logging)
+    data = scan_directory(path=data['directory_path'], session=session, path_to_loging=data['log'],
+                          loger=custom_logging)
     custom_logging.finish_logs()
+    difference = list(set(data['file_hashes']).symmetric_difference(set(data['old_hashes'])))
+    if len(difference) != 0:
+        delete_files(hashes=difference, session=session)
+    delete_dirs(session, directs=data['dirs'], old_directs=check_for_delete_dirs(session=session))
 
 
 if __name__ == '__main__':
